@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Productos</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="estilos.css">
+</head>
+
+<body>
+    <h1>Productos</h1>
+    <header id="header">
+        <!-- place navbar here -->
+    </header>
+    
+    <main>
+        <div id="app" class="container">
+            
+            <br>
+            <a class="nuevo" href="producto_nuevo.html">Nuevo</a>
+            <br><br>
+            <div v-if="error">
+                <p class="mensaje-error">Hubo un error para cargar los productos, intente más tade! </p>
+            </div>
+            <div v-else>
+                <section v-if="cargando" class="cargando">
+                    <div class="spinner-border"></div>
+                    <p>Cargando</p>
+                </section>
+                <section v-else>
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Id</th>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Precio</th>
+                                    <th scope="col">Stock</th>
+                                    <th scope="col">Imagen</th>
+                                    <th scope="col">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="" v-for="producto in productos">
+                                    <td class="filas-vue"  scope="row">{{producto.id}}</td>
+                                    <td class="filas-vue">{{producto.nombre}}</td>
+                                    <td class="filas-vue">{{producto.precio}}</td>
+                                    <td class="filas-vue">{{producto.stock}}</td>
+                                    <td class="filas-vue">
+                                        <img width="60" :src="producto.imagen" :alt="producto.nombre">
+                                    </td>
+                                    <td class="filas-vue" id="contenedor-botones-accion">
+                                        <a id="boton-editarProducto"
+                                            :href="'producto_update.html?id='+ producto.id">Editar</a>
+                                        <button type="button" class="boton-borrar"
+                                            v-on:click="eliminar(producto.id)">Eliminar</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <!-- place footer here -->
+    </footer>
+    <!--Link de Bootstrap-->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+        integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz"
+        crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script><!--Link de VUE-->
+    <script src="js/productos.js"></script>
+    <script src="./js/navegador.js"></script>
+</body>
+
+</html>
